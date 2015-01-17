@@ -20,6 +20,7 @@ var hybrid = hybridify(function asyncFn(a, b, c, callback) {
   callback(null, a, b, c);
 });
 
+// both in same time!
 hybrid(1, 2, 3, function(err, res) {
   console.log('CALLBACK err:', err);
   console.log('CALLBACK res:', res);
@@ -31,6 +32,13 @@ hybrid(1, 2, 3, function(err, res) {
   console.log('PROMISE err:', err);
 })
 ```
+
+
+## Related
+- [thenify](https://github.com/thenables/thenify)
+- [thenify-all](https://github.com/thenables/thenify-all)
+- [callback-and-promise](https://github.com/thenables/callback-and-promise)
+- [thenables org](https://github.com/thenables)
 
 
 ## Author
