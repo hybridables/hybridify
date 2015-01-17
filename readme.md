@@ -1,6 +1,7 @@
 ## [![npm][npmjs-img]][npmjs-url] [![mit license][license-img]][license-url] [![build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![deps status][daviddm-img]][daviddm-url]
 
-> Building hybrid APIs. You can use both callback and promise in same time. Like `fn(name, cb).then().catch()`
+> Building hybrid APIs. You can use both callback and promise in same time.  
+Like `fn(name, cb).then().catch()`
 
 ## Install
 ```bash
@@ -14,10 +15,22 @@ npm test
 
 ```js
 var hybridify = require('hybridify');
+
+var hybrid = hybridify(function asyncFn(a, b, c, callback) {
+  callback(null, a, b, c);
+});
+
+hybrid(1, 2, 3, function(err, res) {
+  console.log('CALLBACK err:', err);
+  console.log('CALLBACK res:', res);
+})
+.then(function(res) {
+  console.log('PROMISE res:', res);
+})
+.catch(function(err) {
+  console.log('PROMISE err:', err);
+})
 ```
-
-
-## API / CLI
 
 
 ## Author
@@ -30,7 +43,7 @@ var hybridify = require('hybridify');
 
 
 ## License [![MIT license][license-img]][license-url]
-Copyright (c) 2014 [Charlike Mike Reagent][contrib-more], [contributors][contrib-graf].  
+Copyright (c) 2015 [Charlike Mike Reagent][contrib-more], [contributors][contrib-graf].  
 Released under the [`MIT`][license-url] license.
 
 
