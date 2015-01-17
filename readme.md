@@ -1,6 +1,6 @@
-## [![npm versi][npmjs-img]][npmjs-url] [![mit license][license-img]][license-url] [![build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![deps status][daviddm-img]][daviddm-url]
+## [![npm][npmjs-img]][npmjs-url] [![mit license][license-img]][license-url] [![build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![deps status][daviddm-img]][daviddm-url]
 
-> Create callback of promise. Or promesify function then create callback for it.
+> Building hybrid APIs. You can use both callback and promise in same time. Like `fn(name, cb).then().catch()`
 
 ## Install
 ```bash
@@ -59,4 +59,4 @@ Released under the [`MIT`][license-url] license.
 
 ***
 
-_Powered and automated by [readdirp + hogan.js](https://github.com/tunnckoCore), December 23, 2014_
+_Powered and automated by [kdf](https://github.com/tunnckoCore), January 17, 2015_

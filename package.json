@@ -1,9 +1,9 @@
 {
   "name": "hybridify",
   "version": "0.0.0",
-  "description": "Create callback of promise. Or promesify function then create callback for it.",
+  "description": "Building hybrid APIs. You can use both callback and promise in same time. Like `fn(name, cb).then().catch()`",
   "scripts": {
-    "lint": "jshint . && jscs . --reporter inline",
+    "lint": "jshint index.js && jscs index.js --reporter inline",
     "test": "mocha",
     "test-cov": "istanbul cover _mocha",
     "test-travis": "istanbul cover _mocha --report lcovonly"
@@ -22,6 +22,13 @@
     "type": "MIT",
     "url": "https://github.com/tunnckoCore/hybridify/blob/master/license.md"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "thenify": "^3.1.0",
+    "handle-callback": "*"
+  },
+  "devDependencies": {
+    "istanbul-harmony": "^0.3.1",
+    "mocha": "*",
+    "mocha-lcov-reporter": "^0.0.1"
+  }
 }

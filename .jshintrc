@@ -2,7 +2,7 @@
   "maxerr"        : 10,
   "indent"        : 2,
 
-  "maxparams"     : 4,
+  "maxparams"     : 3,
   "maxdepth"      : 3,
   "maxstatements" : 15,
   "maxlen"        : 120,
