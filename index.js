@@ -9,31 +9,33 @@
 
 var handleCallback = require('handle-callback');
 var thenify = require('thenify');
+var slice = require('array-slice');
 
 /**
  * Building hybrid APIs. You can use both callback and promise in same time.
- * Like `fn(name, cb).then().catch()`
+ * Like `asyncFn(name, cb).then().catch()`
  *
- * @param  {Function} `fn`
+ * @param  {Function} `asyncFn`
  * @return {Function} when funcion is called return promise.
  * @api public
  */
-module.exports = function hybridify(fn) {
-  if (typeof fn !== 'function') {
-    throw new TypeError('hybridify: expect `fn` to be function');
+module.exports = function hybridify(asyncFn) {
+  if (typeof asyncFn !== 'function') {
+    throw new TypeError('hybridify: expect `asyncFn` to be function');
   }
 
   return function hybridifyFn() {
-    var args = [].slice.call(arguments);
+    var args = slice(arguments);
     var len = args.length;
     var callback = null;
+    var last = args[len - 1];
 
-    if (typeof args[len - 1] === 'function') {
-      callback = args[len - 1];
+    if (typeof last === 'function') {
+      callback = last;
       args = args.slice(0, -1);
     }
 
-    var promise = thenify(fn).apply(null, args);
+    var promise = thenify(asyncFn).apply(null, args);
     if (callback) {
       promise = handleCallback(promise, callback);
     }

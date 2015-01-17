@@ -23,8 +23,9 @@
     "url": "https://github.com/tunnckoCore/hybridify/blob/master/license.md"
   },
   "dependencies": {
-    "thenify": "^3.1.0",
-    "handle-callback": "*"
+    "array-slice": "^0.2.2",
+    "handle-callback": "*",
+    "thenify": "^3.1.0"
   },
   "devDependencies": {
     "istanbul-harmony": "^0.3.1",

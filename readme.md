@@ -1,7 +1,7 @@
 ## [![npm][npmjs-img]][npmjs-url] [![mit license][license-img]][license-url] [![build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![deps status][daviddm-img]][daviddm-url]
 
 > Building hybrid APIs. You can use both callback and promise in same time.  
-Like `fn(name, cb).then().catch()`
+Like `asyncFn(name, cb).then().catch()`
 
 ## Install
 ```bash
