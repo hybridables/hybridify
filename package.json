@@ -23,7 +23,7 @@
     "url": "https://github.com/tunnckoCore/hybridify/blob/master/license.md"
   },
   "dependencies": {
-    "array-slice": "^0.2.2",
+    "handle-arguments": "^1.0.2",
     "handle-callback": "*",
     "thenify": "^3.1.0"
   },

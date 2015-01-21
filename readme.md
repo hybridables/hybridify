@@ -39,6 +39,8 @@ hybrid(1, 2, 3, function(err, res) {
 - [thenify-all](https://github.com/thenables/thenify-all)
 - [callback-and-promise](https://github.com/thenables/callback-and-promise)
 - [thenables org](https://github.com/thenables)
+- [handle-callback](https://github.com/tunnckoCore/handle-callback)
+- [handle-arguments](https://github.com/tunnckoCore/handle-arguments)
 
 
 ## Author
@@ -80,4 +82,4 @@ Released under the [`MIT`][license-url] license.
 
 ***
 
-_Powered and automated by [kdf](https://github.com/tunnckoCore), January 17, 2015_
+_Powered and automated by [kdf](https://github.com/tunnckoCore), January 21, 2015_

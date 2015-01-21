@@ -8,8 +8,8 @@
 'use strict';
 
 var handleCallback = require('handle-callback');
+var handleArguments = require('handle-arguments');
 var thenify = require('thenify');
-var slice = require('array-slice');
 
 /**
  * Building hybrid APIs. You can use both callback and promise in same time.
@@ -25,19 +25,11 @@ module.exports = function hybridify(asyncFn) {
   }
 
   return function hybridifyFn() {
-    var args = slice(arguments);
-    var len = args.length;
-    var callback = null;
-    var last = args[len - 1];
+    var argz = handleArguments(arguments);
 
-    if (typeof last === 'function') {
-      callback = last;
-      args = args.slice(0, -1);
-    }
-
-    var promise = thenify(asyncFn).apply(null, args);
-    if (callback) {
-      promise = handleCallback(promise, callback);
+    var promise = thenify(asyncFn).apply(null, argz.args);
+    if (argz.callback) {
+      promise = handleCallback(promise, argz.callback);
     }
 
     return promise;
