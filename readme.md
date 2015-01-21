@@ -1,7 +1,7 @@
 ## [![npm][npmjs-img]][npmjs-url] [![mit license][license-img]][license-url] [![build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![deps status][daviddm-img]][daviddm-url]
 
 > Building hybrid APIs. You can use both callback and promise in same time.  
-Like `asyncFn(name, cb).then().catch()`
+Like `asyncFn(name, cb).then().catch()`. As I call it _"async to hybrid"_
 
 ## Install
 ```bash
@@ -39,7 +39,7 @@ hybrid(1, 2, 3, function(err, res) {
 - [thenify-all](https://github.com/thenables/thenify-all)
 - [callback-and-promise](https://github.com/thenables/callback-and-promise)
 - [thenables org](https://github.com/thenables)
-- [handle-callback](https://github.com/tunnckoCore/handle-callback)
+- [handle-callback](https://github.com/tunnckoCore/handle-callback) - or as I call it _"promise to hybrid"_
 - [handle-arguments](https://github.com/tunnckoCore/handle-arguments)
 
 
