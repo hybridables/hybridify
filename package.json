@@ -53,6 +53,7 @@
   "dependencies": {
     "handle-arguments": "^1.0.2",
     "handle-callback": "*",
+    "is-empty-function": "^1.0.0",
     "thenify": "^3.1.0"
   },
   "devDependencies": {

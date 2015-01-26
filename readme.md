@@ -10,8 +10,17 @@ npm test
 ```
 
 
-## Usage
+## API
 > For more use-cases see the [tests](./test.js)
+
+### [hybridify](./index.js#L50)
+> Building hybrid APIs. You can use both callback and promise in same time.  
+Like `asyncFn(name, cb).then().catch()`. As I call it _"async to hybrid"_
+
+- `<asyncFn>` **{Function}** function to hybridify  
+- `return` **{Promise}**  when funcion is called return promise
+
+**Example:**
 
 ```js
 var hybridify = require('hybridify');
@@ -35,12 +44,16 @@ hybrid(1, 2, 3, function(err, res) {
 
 
 ## Related
-- [thenify](https://github.com/thenables/thenify)
-- [thenify-all](https://github.com/thenables/thenify-all)
-- [callback-and-promise](https://github.com/thenables/callback-and-promise)
-- [thenables org](https://github.com/thenables)
-- [handle-callback](https://github.com/tunnckoCore/handle-callback) - or as I call it _"promise to hybrid"_
-- [handle-arguments](https://github.com/tunnckoCore/handle-arguments)
+[callback-and-promise][callback-and-promise]
+[thenify-all][thenify-all]
+[thenify][thenify]
+[thenables][thenables]
+[hybridables][hybridables]
+[hybridify][hybridify]
+[hybridify-all][hybridify-all]
+[handle-callback][handle-callback]
+[handle-errors][handle-errors]
+[handle-arguments][handle-arguments]
 
 
 ## Author
@@ -82,4 +95,15 @@ Released under the [`MIT`][license-url] license.
 
 ***
 
-_Powered and automated by [kdf](https://github.com/tunnckoCore), January 21, 2015_
+_Powered and automated by [kdf](https://github.com/tunnckoCore), January 26, 2015_
+
+[callback-and-promise]: https://github.com/thenables/callback-and-promise
+[thenify-all]: https://github.com/thenables/thenify-all
+[thenify]: https://github.com/thenables/thenify
+[thenables]: https://github.com/thenables
+[hybridables]: https://github.com/hybridables
+[hybridify]: https://github.com/tunnckoCore/hybridify
+[hybridify-all]: https://github.com/tunnckoCore/hybridify-all
+[handle-callback]: https://github.com/tunnckoCore/handle-callback
+[handle-errors]: https://github.com/tunnckoCore/handle-errors
+[handle-arguments]: https://github.com/tunnckoCore/handle-arguments

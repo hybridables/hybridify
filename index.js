@@ -9,14 +9,38 @@
 
 var handleCallback = require('handle-callback');
 var handleArguments = require('handle-arguments');
+var isEmptyFunction = require('is-empty-function');
 var thenify = require('thenify');
 
 /**
  * Building hybrid APIs. You can use both callback and promise in same time.
  * Like `asyncFn(name, cb).then().catch()`
  *
- * @param  {Function} `asyncFn`
- * @return {Function} when funcion is called return promise.
+ * **Example:**
+ *
+ * ```js
+ * var hybridify = require('hybridify');
+ *
+ * var hybrid = hybridify(function asyncFn(a, b, c, callback) {
+ *   callback(null, a, b, c);
+ * });
+ *
+ * // both in same time!
+ * hybrid(1, 2, 3, function(err, res) {
+ *   console.log('CALLBACK err:', err);
+ *   console.log('CALLBACK res:', res);
+ * })
+ * .then(function(res) {
+ *   console.log('PROMISE res:', res);
+ * })
+ * .catch(function(err) {
+ *   console.log('PROMISE err:', err);
+ * })
+ * ```
+ *
+ * @name hybridify
+ * @param  {Function} `<asyncFn>` function to hybridify
+ * @return {Function} when funcion is called return promise
  * @api public
  */
 module.exports = function hybridify(asyncFn) {
@@ -26,10 +50,11 @@ module.exports = function hybridify(asyncFn) {
 
   return function hybridifyFn() {
     var argz = handleArguments(arguments);
+    var cb = argz.callback;
 
     var promise = thenify(asyncFn).apply(null, argz.args);
-    if (argz.callback) {
-      promise = handleCallback(promise, argz.callback);
+    if (!isEmptyFunction(cb) && cb.name !== 'defaultHandleArgumentsCallback') {
+      promise = handleCallback(promise, cb);
     }
 
     return promise;
