@@ -44,16 +44,16 @@ hybrid(1, 2, 3, function(err, res) {
 
 
 ## Related
-[callback-and-promise][callback-and-promise]
-[thenify-all][thenify-all]
-[thenify][thenify]
-[thenables][thenables]
-[hybridables][hybridables]
-[hybridify][hybridify]
-[hybridify-all][hybridify-all]
-[handle-callback][handle-callback]
-[handle-errors][handle-errors]
-[handle-arguments][handle-arguments]
+- [callback-and-promise][callback-and-promise]
+- [thenify-all][thenify-all]
+- [thenify][thenify]
+- [thenables][thenables]
+- [hybridables][hybridables]
+- [hybridify][hybridify]
+- [hybridify-all][hybridify-all]
+- [handle-callback][handle-callback]
+- [handle-errors][handle-errors]
+- [handle-arguments][handle-arguments]
 
 
 ## Author
