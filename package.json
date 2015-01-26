@@ -51,9 +51,9 @@
     "url": "https://github.com/tunnckoCore/hybridify/blob/master/license.md"
   },
   "dependencies": {
-    "handle-arguments": "^1.0.2",
-    "handle-callback": "*",
-    "is-empty-function": "^1.0.0",
+    "handle-arguments": "^1.0.x",
+    "handle-callback": "^1.0.x",
+    "is-empty-function": "^1.0.x",
     "thenify": "^3.1.0"
   },
   "devDependencies": {
