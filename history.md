@@ -1,5 +1,9 @@
 
 
+## v1.0.2 / January 26, 2015
+- Release v1.0.2 / npm@v1.0.2
+- fix related list
+
 ## v1.0.1 / January 26, 2015
 - Release v1.0.1 / npm@v1.0.1
 - update version ranges
