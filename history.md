@@ -1,5 +1,9 @@
 
 
+## v1.0.3 / January 26, 2015
+- fix ref links
+- change links to `hybridables` org
+
 ## v1.0.2 / January 26, 2015
 - Release v1.0.2 / npm@v1.0.2
 - fix related list
