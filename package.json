@@ -1,6 +1,6 @@
 {
   "name": "hybridify",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Building hybrid APIs. You can use both callback and promise in same time.  Like `asyncFn(name, cb).then().catch()`",
   "scripts": {
     "lint": "jshint index.js && jscs index.js --reporter inline",
