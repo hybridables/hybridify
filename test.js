@@ -19,6 +19,16 @@ var hybridGot = hybridify(got.get);
 // which is expected, because its the core of `hybridify`
 
 describe('hybridify:', function() {
+  describe('should throw error', function() {
+    it('when first argument not a Function', function(done) {
+      function fixture() {
+        return hybridify('expects only function');
+      }
+      assert.throws(fixture, TypeError);
+      done();
+    });
+  });
+
   describe('should work', function() {
     it('with callback api', function(done) {
       this.timeout(10000);
@@ -26,14 +36,13 @@ describe('hybridify:', function() {
       var hybrid = hybridGot('https://github.com', function(err, res) {
         var body = res[0];
         var stream = res[1];
-
         // callback api
 
         assert.strictEqual(err, null);
         assert(res);
         assert(stream);
         assert.strictEqual(body[0], '<'); // it is html
-        done()
+        done();
       })
     });
 
@@ -44,13 +53,12 @@ describe('hybridify:', function() {
       hybrid.then(function(res) {
         var body = res[0];
         var stream = res[1];
-
         // promise api
 
         assert(res);
         assert(stream);
         assert.strictEqual(body[0], '<'); // it is html
-        done()
+        done();
       });
     });
 
@@ -60,7 +68,6 @@ describe('hybridify:', function() {
       var hybrid = hybridGot('https://github.com', function(err, res) {
         var body = res[0];
         var stream = res[1];
-
         // callback api
 
         assert.strictEqual(err, null);
@@ -71,28 +78,42 @@ describe('hybridify:', function() {
       .then(function(res) {
         var body = res[0];
         var stream = res[1];
-
         // promise api
 
         assert(res);
         assert(stream);
         assert.strictEqual(body[0], '<'); // it is html
-        done()
+        done();
       });
     });
   });
 
+  describe('should be able to create own hybrids', function() {
+    it('every hybrid have `.hybridify` method', function(done) {
+      var hybrid = hybridGot('https://github.com');
+
+      assert.strictEqual(typeof hybrid.hybridify, 'function');
+      assert.strictEqual(typeof hybridGot.hybridify, 'function');
+      done();
+    });
+    it('every hybrid is promise and have `.then` and `.catch` methods', function(done) {
+      var hybrid = hybridGot('https://github.com');
+
+      assert.strictEqual(typeof hybrid.then, 'function');
+      assert.strictEqual(typeof hybrid.catch, 'function');
+      assert.strictEqual(typeof hybrid.hybridify, 'function');
+      assert.strictEqual(typeof hybridGot.hybridify, 'function');
+      done();
+    });
+  });
 
   describe('should be able to catch error', function() {
     it('with callback api', function(done) {
       this.timeout(10000);
 
       var hybrid = hybridGot('https://gitfsdfsdfm', function(err, res) {
-
-        assert.throws(err, Error);
-
         // callback api
-
+        assert.throws(err, Error);
         assert.strictEqual(res, null || undefined);
         done();
       })
@@ -121,16 +142,6 @@ describe('hybridify:', function() {
         assert.throws(err, Error);
         done();
       })
-    });
-  });
-
-  describe('should throw error', function() {
-    it('when first argument not a Function', function(done) {
-      function iifn() {
-        return hybridify('expects only function');
-      }
-      assert.throws(iifn, TypeError);
-      done()
     });
   });
 });
