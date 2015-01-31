@@ -1,5 +1,9 @@
 
 
+## v1.0.6 / February 01, 2015
+- Release v1.0.6 / npm@v1.0.6
+- add new tests, lint
+
 ## v1.0.5 / January 31, 2015
 - Release v1.0.5 / npm@v1.0.5
 - add ability every new hybrid to create own hybrids
