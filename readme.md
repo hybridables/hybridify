@@ -78,6 +78,18 @@ var promisePost1 = hybridGet.hybridify(got.post);
 var promisePost2 = promiseGet.hybridify(got.post);
 ```
 
+**Just run it**
+
+```js
+var got = require('got');
+var hybridGot = hybridify(got.get);
+var anotherHybrid = hybridGot('https://github.com');
+
+console.log(typeof hybridGot.hybridify);
+console.log(typeof anotherHybrid.then);
+console.log(typeof anotherHybrid.catch);
+console.log(typeof anotherHybrid.hybridify);
+```
 
 ## Related
 - [callback-and-promise][callback-and-promise]
