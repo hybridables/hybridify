@@ -43,12 +43,14 @@ var thenify = require('thenify');
  * @return {Function} when funcion is called return promise
  * @api public
  */
-module.exports = function hybridify(asyncFn) {
+var hybridify = module.exports = hybridify;
+
+function hybridify(asyncFn) {
   if (typeof asyncFn !== 'function') {
     throw new TypeError('hybridify: expect `asyncFn` to be function');
   }
 
-  return function hybridifyFn() {
+  function hybridifyFn() {
     var argz = handleArguments(arguments);
     var cb = argz.callback;
 
@@ -56,7 +58,12 @@ module.exports = function hybridify(asyncFn) {
     if (!isEmptyFunction(cb) && cb.name !== 'defaultHandleArgumentsCallback') {
       promise = handleCallback(promise, cb);
     }
-
+    promise.hybridify = hybridify;
     return promise;
   }
-};
+
+  hybridifyFn.hybridify = hybridify
+  return hybridifyFn;
+}
+
+
