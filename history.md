@@ -1,5 +1,10 @@
 
 
+## v1.0.5 / January 31, 2015
+- Release v1.0.5 / npm@v1.0.5
+- add ability every new hybrid to create own hybrids
+- actually just `.hybridify` method for every hybridified async function
+
 ## v1.0.4 / January 28, 2015
 - Release v1.0.4 / npm@v1.0.4
 - bump dependencies
