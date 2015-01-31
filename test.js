@@ -16,6 +16,8 @@ var assert = require('assert');
 var hybridGot = hybridify(got.get);
 
 // console.log(hybridGot('https://github.com').hybridify);
+// console.log(hybridGot('https://github.com').then);
+// console.log(hybridGot('https://github.com').catch);
 // console.log(hybridGot.hybridify);
 
 // almost the same tests as `handle-callback`,

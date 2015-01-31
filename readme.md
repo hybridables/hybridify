@@ -4,10 +4,25 @@
 Like `asyncFn(name, cb).then().catch()`. As I call it _"async to hybrid"_
 
 ## Install
-```bash
-npm install hybridify
+```
+npm i --save hybridify
 npm test
 ```
+
+
+From v1.0.5, `hybridify` is more awesome! Now when you hybridify some async function, it have
+ability to create his own hybrids. Actualy to now every hybridified async function was just a promise
+who let you use both callback-style and promise-style api in same time.
+
+Every hybridified function will have `.hybridify` method before and after it's execution. So if
+you have even one hybrid it will be able to create N more hybrids. **Without the need to include
+ `hybridify` as dependency of you package, just because every hybrid will have his own population
+ of hybrids.**
+
+ Example of this awesomeness is [exec-cmd][exec-cmd] which is hybridify wrapper for 
+ [async-exec-cmd][async-exec-cmd]. So now when we use `exec-cmd` in some package we'll be able to 
+ create more hybrids, without including `hybridify` as dependency of that package.
+ I use `exec-cmd` in [gitclone][gitclone], so i dont need to install hybridify.
 
 
 ## API
@@ -42,6 +57,27 @@ hybrid(1, 2, 3, function(err, res) {
 })
 ```
 
+**Creating own population of hybrids**
+> Every hybrid have `.hybridify` method...
+
+```js
+var run = require('exec-cmd'); // some hybrid
+var got = require('got'); // async functions
+
+// create got's constructor (which is .get method) hybrid
+var hybridGet = run.hybridify(got);
+
+// `promiseGet` is now hybrid that have
+// promise's methods `.then` and `.catch`
+// plus `.hybridify` method
+var promiseGet = hybridGet('https://github.com');
+
+// you can use either `hybridGet.hybridify`
+// and `promiseGet.hybridify`
+var promisePost1 = hybridGet.hybridify(got.post);
+var promisePost2 = promiseGet.hybridify(got.post);
+```
+
 
 ## Related
 - [callback-and-promise][callback-and-promise]
@@ -54,6 +90,10 @@ hybrid(1, 2, 3, function(err, res) {
 - [handle-callback][handle-callback]
 - [handle-errors][handle-errors]
 - [handle-arguments][handle-arguments]
+- [async-exec-cmd][async-exec-cmd]
+- [exec-cmd][exec-cmd] (hybrid)
+- [gitclone][gitclone] (hybrid)
+- [gitclone-cli][gitclone-cli] (hybrid)
 
 
 ## Author
@@ -95,7 +135,7 @@ Released under the [`MIT`][license-url] license.
 
 ***
 
-_Powered and automated by [kdf](https://github.com/tunnckoCore), January 26, 2015_
+_Powered and automated by [kdf](https://github.com/tunnckoCore), January 31, 2015_
 
 [callback-and-promise]: https://github.com/thenables/callback-and-promise
 [thenify-all]: https://github.com/thenables/thenify-all
@@ -107,3 +147,7 @@ _Powered and automated by [kdf](https://github.com/tunnckoCore), January 26, 201
 [handle-callback]: https://github.com/hybridables/handle-callback
 [handle-errors]: https://github.com/hybridables/handle-errors
 [handle-arguments]: https://github.com/hybridables/handle-arguments
+[exec-cmd]: https://github.com/hybridables/exec-cmd
+[async-exec-cmd]: https://github.com/tunnckoCore/async-exec-cmd
+[gitclone]: https://github.com/tunnckoCore/gitclone
+[gitclone-cli]: https://github.com/tunnckoCore/gitclone-cli
