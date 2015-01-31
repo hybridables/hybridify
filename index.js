@@ -65,5 +65,3 @@ function hybridify(asyncFn) {
   hybridifyFn.hybridify = hybridify
   return hybridifyFn;
 }
-
-
