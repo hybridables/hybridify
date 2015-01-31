@@ -10,15 +10,10 @@
 var hybridify = require('./index');
 
 var handleCallback = require('./index');
-var got = require('got');
 var assert = require('assert');
+var got = require('got');
 
 var hybridGot = hybridify(got.get);
-
-// console.log(hybridGot('https://github.com').hybridify);
-// console.log(hybridGot('https://github.com').then);
-// console.log(hybridGot('https://github.com').catch);
-// console.log(hybridGot.hybridify);
 
 // almost the same tests as `handle-callback`,
 // which is expected, because its the core of `hybridify`
