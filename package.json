@@ -3,13 +3,10 @@
   "version": "1.0.6",
   "description": "Building hybrid APIs. You can use both callback and promise in same time.  Like `asyncFn(name, cb).then().catch()`",
   "scripts": {
-    "lint": "jshint index.js && jscs index.js --reporter inline",
-    "test": "mocha",
-    "test-cov": "istanbul cover _mocha",
-    "test-travis": "istanbul cover _mocha --report lcovonly"
+    "test": "standard && node test.js"
   },
   "author": {
-    "name": "Charlike Make Reagent",
+    "name": "Charlike Mike Reagent",
     "email": "mameto_100@mail.bg",
     "url": "https://github.com/tunnckoCore"
   },
@@ -48,19 +45,14 @@
   ],
   "license": {
     "type": "MIT",
-    "url": "https://github.com/hybridables/hybridify/blob/master/license.md"
+    "url": "https://github.com/hybridables/hybridify/blob/master/LICENSE.md"
   },
   "dependencies": {
-    "handle-arguments": "~2.0.0",
-    "handle-callback": "~1.0.0",
-    "is-empty-function": "~1.0.3",
-    "thenify": "^3.1.0"
+    "bluebird": "~2.9.25",
+    "handle-arguments": "~3.0.1"
   },
   "devDependencies": {
-    "bluebird": "^2.8.2",
-    "got": "^2.3.1",
-    "istanbul-harmony": "^0.3.1",
-    "mocha": "*",
-    "mocha-lcov-reporter": "^0.0.1"
+    "assertit": "^0.1.0",
+    "got": "^3.2.0"
   }
 }
