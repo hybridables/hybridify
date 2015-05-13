@@ -25,22 +25,22 @@ Like `asyncFn(name, cb).then().catch()`. As I call it _"async to hybrid"_
 **Example:**
 
 ```js
-var hybridify = require('hybridify');
+var hybridify = require('hybridify')
 
 var hybrid = hybridify(function asyncFn(a, b, c, callback) {
-  callback(null, a, b, c);
+  callback(null, a, b, c)
 });
 
 // both in same time!
 hybrid(1, 2, 3, function(err, res) {
-  console.log('CALLBACK err:', err);
-  console.log('CALLBACK res:', res);
+  console.log('CALLBACK err:', err)
+  console.log('CALLBACK res:', res)
 })
 .then(function(res) {
-  console.log('PROMISE res:', res);
+  console.log('PROMISE res:', res)
 })
 .catch(function(err) {
-  console.log('PROMISE err:', err);
+  console.log('PROMISE err:', err)
 })
 ```
 
@@ -48,34 +48,34 @@ hybrid(1, 2, 3, function(err, res) {
 > Every hybrid have `.hybridify` method...
 
 ```js
-var run = require('exec-cmd'); // some hybrid
-var got = require('got'); // async functions
+var run = require('exec-cmd') // some hybrid
+var got = require('got') // async functions
 
 // create got's constructor (which is .get method) hybrid
-var hybridGet = run.hybridify(got);
+var hybridGet = run.hybridify(got)
 
 // `promiseGet` is now hybrid that have
 // promise's methods `.then` and `.catch`
 // plus `.hybridify` method
-var promiseGet = hybridGet('https://github.com');
+var promiseGet = hybridGet('https://github.com')
 
 // you can use either `hybridGet.hybridify`
 // and `promiseGet.hybridify`
-var promisePost1 = hybridGet.hybridify(got.post);
-var promisePost2 = promiseGet.hybridify(got.post);
+var promisePost1 = hybridGet.hybridify(got.post)
+var promisePost2 = promiseGet.hybridify(got.post)
 ```
 
 **Just run it**
 
 ```js
-var got = require('got');
-var hybridGot = hybridify(got.get);
-var anotherHybrid = hybridGot('https://github.com');
+var got = require('got')
+var hybridGot = hybridify(got.get)
+var anotherHybrid = hybridGot('https://github.com')
 
-console.log(typeof hybridGot.hybridify);
-console.log(typeof anotherHybrid.then);
-console.log(typeof anotherHybrid.catch);
-console.log(typeof anotherHybrid.hybridify);
+console.log(typeof hybridGot.hybridify)
+console.log(typeof anotherHybrid.then)
+console.log(typeof anotherHybrid.catch)
+console.log(typeof anotherHybrid.hybridify)
 ```
 
 
