@@ -129,7 +129,7 @@ test('hybridify:', function () {
       })
       .catch(function (err) {
         // promise api
-        test.assert.strictEqual(i, 1);
+        test.assert.strictEqual(i, 1)
         test.assert.ifError(!err)
         test.assert.ok(err.message)
         done()
