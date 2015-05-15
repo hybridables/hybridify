@@ -5,6 +5,8 @@
  * Released under the MIT license.
  */
 
+/* jshint asi:true */
+
 'use strict'
 
 var test = require('assertit')
