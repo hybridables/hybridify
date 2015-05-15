@@ -79,6 +79,13 @@ console.log(typeof anotherHybrid.hybridify)
 ```
 
 
+## Related
+- [bluebird](https://github.com/petkaantonov/bluebird): Full featured Promises/A+ implementation with exceptionally good performance
+- [exec-cmd](https://github.com/hybridables/exec-cmd): Flexible and cross-platform executing commands. Hybrid. Async and Promise API.
+- [hybridify-all](https://github.com/hybridables/hybridify-all#readme): Hybridifies all the selected functions in an object.
+- [thenify](https://github.com/thenables/thenify): Promisify a callback-based function
+
+
 ## Contributing
 
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/hybridables/hybridify/issues/new).  
