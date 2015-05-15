@@ -1,5 +1,9 @@
 
 
+## 1.0.8 - 2015-05-16
+- Release v1.0.8 / npm@v1.0.8
+- add related section
+
 ## 1.0.7 - 2015-05-16
 - Release v1.0.7 / npm@v1.0.7
 - jshint asi:true for test.js
