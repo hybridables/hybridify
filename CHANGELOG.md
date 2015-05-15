@@ -1,5 +1,15 @@
 
 
+## 1.0.7 - 2015-05-16
+- Release v1.0.7 / npm@v1.0.7
+- jshint asi:true for test.js
+- simplify tests, close #1
+- cleanup one semicolon, lol
+- standard for readme
+- update changelog
+- update readme
+- refactor and update
+
 ## 1.0.6 - 2015-02-01
 - Release v1.0.6 / npm@v1.0.6
 - add new tests, lint
