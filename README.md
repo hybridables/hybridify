@@ -89,7 +89,7 @@ console.log(typeof anotherHybrid.hybridify)
 ## Contributing
 
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/hybridables/hybridify/issues/new).  
-But before doing anything, please that read the [CONTRIBUTING.md](./CONTRIBUTING.md) guidelines.
+But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) guidelines.
 
 
 ## [Charlike Make Reagent](http://j.mp/1stW47C) [![new message to charlike][new-message-img]][new-message-url] [![freenode #charlike][freenode-img]][freenode-url]
