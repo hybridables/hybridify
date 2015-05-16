@@ -1,5 +1,9 @@
 
 
+## 1.0.9 - 2015-05-17
+- Release v1.0.9 / npm@v1.0.9
+- fix contributing section typo
+
 ## 1.0.8 - 2015-05-16
 - Release v1.0.8 / npm@v1.0.8
 - add related section
