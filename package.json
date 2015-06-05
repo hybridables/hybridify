@@ -1,18 +1,24 @@
 {
   "name": "hybridify",
   "version": "1.0.9",
-  "description": "Building hybrid APIs. You can use both callback and promise in same time.  Like `asyncFn(name, cb).then().catch()`",
+  "description": "description",
+  "repository": "hybridables/hybridify",
+  "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
+  "main": "index.js",
+  "license": "MIT",
   "scripts": {
     "test": "standard && node test.js"
   },
-  "author": {
-    "name": "Charlike Mike Reagent",
-    "email": "mameto_100@mail.bg",
-    "url": "https://github.com/tunnckoCore"
+  "dependencies": {
+    "always-promise": "~1.0.0",
+    "handle-arguments": "~3.0.2",
+    "handle-callback": "~2.0.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/hybridables/hybridify.git"
+  "devDependencies": {
+    "assertit": "^0.1.0",
+    "got": "^3.2.0",
+    "is-hybrid": "^1.0.0",
+    "is-promise": "^2.0.0"
   },
   "keywords": [
     "api",
@@ -42,17 +48,5 @@
     "promises-api",
     "promises-aplus",
     "then"
-  ],
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/hybridables/hybridify/blob/master/LICENSE.md"
-  },
-  "dependencies": {
-    "bluebird": "~2.9.25",
-    "handle-arguments": "~3.0.1"
-  },
-  "devDependencies": {
-    "assertit": "^0.1.0",
-    "got": "^3.2.0"
-  }
+  ]
 }

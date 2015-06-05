@@ -7,22 +7,22 @@
 
 'use strict'
 
-var Bluebird = require('bluebird')
 var handleArguments = require('handle-arguments')
+var handleCallback = require('handle-callback')
+var alwaysPromise = require('always-promise')
 
 module.exports = hybridify
 
-function hybridify (asyncFn) {
+function hybridify (fn) {
   function hybridifyFn () {
     var argz = handleArguments(arguments)
-    var fn = Bluebird.promisify(asyncFn)
-    var promise = fn.apply(fn, argz.args)
-
-    promise.hybridify = hybridify
+    var promise = alwaysPromise(fn).apply(fn, argz.args)
 
     if (argz.callback) {
-      return promise.nodeify(argz.callback)
+      promise = handleCallback(promise, argz.callback)
     }
+
+    promise.hybridify = hybridify
     return promise
   }
 

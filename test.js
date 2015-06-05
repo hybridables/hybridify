@@ -11,42 +11,84 @@
 
 var test = require('assertit')
 var hybridify = require('./index')
+var isPromise = require('is-promise')
+var isHybrid = require('is-hybrid')
 
 var got = require('got')
 var hybridGot = hybridify(got.get)
 
 test('hybridify:', function () {
-  test('should work', function () {
-    test('with callback api', function (done) {
-      hybridGot('https://github.com', function (err, res) {
-        test.ifError(err)
-        test.equal(res.length, 2)
-        test.equal(res[0][0], '<')
-        done()
-      })
-    })
-    test('with promise api', function (done) {
-      hybridGot('https://github.com').then(function (res) {
-        test.equal(res.length, 2)
-        test.equal(res[0][0], '<')
-        done()
-      })
-    })
-    test('with both callback and promise api', function (done) {
-      var cnt = 0
+  test('should hybridify sync function', function (done) {
+    var JsonParseHybrid = hybridify(JSON.parse)
+    var marker = 11
 
-      hybridGot('https://github.com', function (err, res) {
-        test.ifError(err)
-        test.equal(res.length, 2)
-        test.equal(res[0][0], '<')
-        cnt++
-      })
-      .then(function (res) {
-        test.equal(cnt, 1)
-        test.equal(res.length, 2)
-        test.equal(res[0][0], '<')
-        done()
-      })
+    JsonParseHybrid('{"foo":"bar"}', function (err, res) {
+      test.ifError(err)
+      test.deepEqual(res, {foo: 'bar'})
+      marker += 21
+    })
+    .then(function (res) {
+      test.deepEqual(res, {foo: 'bar'})
+      test.equal(marker, 32)
+      done()
+    })
+  })
+  test('should hybridify(JSON.parse) have .hybridify method', function (done) {
+    var JsonParseHybrid = hybridify(JSON.parse)
+
+    test.equal(typeof JsonParseHybrid.hybridify, 'function')
+    done()
+  })
+  test('should hybrid be promise, return true on isPromise(hybrid)', function (done) {
+    var JsonParseHybrid = hybridify(JSON.parse)
+    var hybrid = JsonParseHybrid('{"foo":"bar"}')
+
+    test.equal(isPromise(hybrid), true)
+    done()
+  })
+  test('should return true on isHybrid(hybrid)', function (done) {
+    var JsonParseHybrid = hybridify(JSON.parse)
+    var hybrid = JsonParseHybrid('{"foo":"bar"}')
+
+    test.equal(isHybrid(hybrid), true)
+    done()
+  })
+  test('should hybrid promise have .hybridify method', function (done) {
+    var JsonParseHybrid = hybridify(JSON.parse)
+    var promise = JsonParseHybrid('{"foo":"bar"}')
+
+    test.equal(typeof promise.hybridify, 'function')
+    done()
+  })
+  test('should work with callback api', function (done) {
+    hybridGot('https://github.com', function (err, res) {
+      test.ifError(err)
+      test.equal(res.length, 2)
+      test.equal(res[0][0], '<')
+      done()
+    })
+  })
+  test('should work with promise api', function (done) {
+    hybridGot('https://github.com').then(function (res) {
+      test.equal(res.length, 2)
+      test.equal(res[0][0], '<')
+      done()
+    })
+  })
+  test('should work with both callback and promise api', function (done) {
+    var cnt = 0
+
+    hybridGot('https://github.com', function (err, res) {
+      test.ifError(err)
+      test.equal(res.length, 2)
+      test.equal(res[0][0], '<')
+      cnt++
+    })
+    .then(function (res) {
+      test.equal(cnt, 1)
+      test.equal(res.length, 2)
+      test.equal(res[0][0], '<')
+      done()
     })
   })
   test('should be able to create own hybrids', function () {
