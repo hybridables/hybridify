@@ -1,8 +1,16 @@
 # hybridify [![npmjs.com][npmjs-img]][npmjs-url] [![The MIT License][license-img]][license-url] 
 
-> Building hybrid APIs. You can use both callback and promise in same time. Like `asyncFn(name, cb).then().catch()`
+> Create synchronous or asynchronous functions to support both promise and callback style api. They are now hybrids - they are able to have own population of hybrids without including `hybridify` anymore.
 
 [![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url] [![travis build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![dependency status][david-img]][david-url]
+
+Hybrids?! Yea, hybrids are just promises on steroids. The philosophy of hybrids are some edge use cases like when you want to use both promise-style api and callback-style api in same time.
+
+Hybrids are perfect for these times of transition from old school callback hell to the new and modern, next-generation javascript world - Promises, Generators, Async Functions and Arrow functions.
+
+If you have callback api, or even some synchronous libs, hybrids comes to the rescue - use hybridify and you here - in Promises Land, with centralized error handling and no breaking changes.
+
+You can use hybridify when you considered to derecate the callback api and want to support then for next few versions. And all that, without breaking changes - users of your library or project will be able to decide what to use - promises or good old callbacks.
 
 
 ## Install
@@ -12,78 +20,37 @@ npm test
 ```
 
 
-## API
+## Usage
 > For more use-cases see the [tests](./test.js)
 
-### [hybridify](./index.js#L50)
-> Building hybrid APIs. You can use both callback and promise in same time.  
-Like `asyncFn(name, cb).then().catch()`. As I call it _"async to hybrid"_
-
-- `<asyncFn>` **{Function}** function to hybridify  
+- `<fn>` **{Function}** function to hybridify, it can be sync or async
 - `return` **{Promise}**  when funcion is called return promise
 
 **Example:**
 
 ```js
+var fs = require('fs')
 var hybridify = require('hybridify')
+var readFile = hybridify(fs.readFile)
 
-var hybrid = hybridify(function asyncFn(a, b, c, callback) {
-  callback(null, a, b, c)
-});
-
-// both in same time!
-hybrid(1, 2, 3, function(err, res) {
-  console.log('CALLBACK err:', err)
-  console.log('CALLBACK res:', res)
-})
-.then(function(res) {
-  console.log('PROMISE res:', res)
-})
-.catch(function(err) {
-  console.log('PROMISE err:', err)
-})
+readFile('./package.json', 'utf8')
+.then(console.log) //=> content of package.json
+.catch(console.error) //=> if some error
 ```
 
-**Creating own population of hybrids**
-> Every hybrid have `.hybridify` method...
+Or you can use both promise api and callback style in same time. Also you're able to hybridify synchronous functions, like `fs.readFileSync` or even `JSON.parse` and `JSON.stringify`
 
 ```js
-var run = require('exec-cmd') // some hybrid
-var got = require('got') // async functions
+var hybridify = require('hybridify')
+var JSONParse = hybridify(JSON.parse)
 
-// create got's constructor (which is .get method) hybrid
-var hybridGet = run.hybridify(got)
-
-// `promiseGet` is now hybrid that have
-// promise's methods `.then` and `.catch`
-// plus `.hybridify` method
-var promiseGet = hybridGet('https://github.com')
-
-// you can use either `hybridGet.hybridify`
-// and `promiseGet.hybridify`
-var promisePost1 = hybridGet.hybridify(got.post)
-var promisePost2 = promiseGet.hybridify(got.post)
+JSONParse('{"foo":"bar"}', function (err, res) {
+  console.log('callback err:', err) //=> null
+  console.log('callback res:', res) //=> { foo: 'bar' }
+})
+.then(console.log) //=> { foo: 'bar' }
+.catch(console.error) //=> if some error
 ```
-
-**Just run it**
-
-```js
-var got = require('got')
-var hybridGot = hybridify(got.get)
-var anotherHybrid = hybridGot('https://github.com')
-
-console.log(typeof hybridGot.hybridify)
-console.log(typeof anotherHybrid.then)
-console.log(typeof anotherHybrid.catch)
-console.log(typeof anotherHybrid.hybridify)
-```
-
-
-## Related
-- [bluebird](https://github.com/petkaantonov/bluebird): Full featured Promises/A+ implementation with exceptionally good performance
-- [exec-cmd](https://github.com/hybridables/exec-cmd): Flexible and cross-platform executing commands. Hybrid. Async and Promise API.
-- [hybridify-all](https://github.com/hybridables/hybridify-all#readme): Hybridifies all the selected functions in an object.
-- [thenify](https://github.com/thenables/thenify): Promisify a callback-based function
 
 
 ## Contributing
