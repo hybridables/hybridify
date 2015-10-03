@@ -10,15 +10,15 @@
     "test": "standard && node test.js"
   },
   "dependencies": {
-    "always-promise": "~1.0.0",
-    "handle-arguments": "~3.0.2",
-    "handle-callback": "~2.0.0"
+    "handle-arguments": "^3.0.4",
+    "voa": "^0.1.1"
   },
   "devDependencies": {
     "assertit": "^0.1.0",
     "got": "^3.2.0",
     "is-hybrid": "^1.0.0",
-    "is-promise": "^2.0.0"
+    "is-promise": "^2.0.0",
+    "mz": "^2.0.0"
   },
   "keywords": [
     "api",

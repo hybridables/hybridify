@@ -7,25 +7,28 @@
 
 'use strict'
 
+var voa = require('voa')
 var handleArguments = require('handle-arguments')
-var handleCallback = require('handle-callback')
-var alwaysPromise = require('always-promise')
 
 module.exports = hybridify
 
-function hybridify (fn) {
-  function hybridifyFn () {
+function hybridify (val) {
+  var self = this
+
+  function hybridified () {
+    voa.promise = hybridify.promise || hybridified.promise
     var argz = handleArguments(arguments)
-    var promise = alwaysPromise(fn).apply(fn, argz.args)
+    var promise = voa.apply(self || this, [val].concat(argz.args))
 
     if (argz.callback) {
-      promise = handleCallback(promise, argz.callback)
+      promise = promise.then(function (res) {
+        argz.callback.apply(self || this, [null].concat(res))
+        return res
+      }.bind(this), argz.callback.bind(self || this))
     }
-
     promise.hybridify = hybridify
     return promise
   }
-
-  hybridifyFn.hybridify = hybridify
-  return hybridifyFn
+  hybridified.hybridify = hybridify
+  return hybridified
 }

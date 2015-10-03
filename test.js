@@ -9,6 +9,7 @@
 
 'use strict'
 
+var fs = require('fs')
 var test = require('assertit')
 var hybridify = require('./index')
 var isPromise = require('is-promise')
@@ -19,43 +20,43 @@ var hybridGot = hybridify(got.get)
 
 test('hybridify:', function () {
   test('should hybridify sync function', function (done) {
-    var JsonParseHybrid = hybridify(JSON.parse)
+    var jsonParseHybrid = hybridify(JSON.parse)
     var marker = 11
 
-    JsonParseHybrid('{"foo":"bar"}', function (err, res) {
+    jsonParseHybrid('{"foo":"bar"}', function (err, res) {
       test.ifError(err)
       test.deepEqual(res, {foo: 'bar'})
       marker += 21
     })
-    .then(function (res) {
-      test.deepEqual(res, {foo: 'bar'})
-      test.equal(marker, 32)
-      done()
-    })
+      .then(function (res) {
+        test.deepEqual(res, {foo: 'bar'})
+        test.equal(marker, 32)
+        done()
+      })
   })
   test('should hybridify(JSON.parse) have .hybridify method', function (done) {
-    var JsonParseHybrid = hybridify(JSON.parse)
+    var jsonParseHybrid = hybridify(JSON.parse)
 
-    test.equal(typeof JsonParseHybrid.hybridify, 'function')
+    test.equal(typeof jsonParseHybrid.hybridify, 'function')
     done()
   })
   test('should hybrid be promise, return true on isPromise(hybrid)', function (done) {
-    var JsonParseHybrid = hybridify(JSON.parse)
-    var hybrid = JsonParseHybrid('{"foo":"bar"}')
+    var jsonParseHybrid = hybridify(JSON.parse)
+    var hybrid = jsonParseHybrid('{"foo":"bar"}')
 
     test.equal(isPromise(hybrid), true)
     done()
   })
   test('should return true on isHybrid(hybrid)', function (done) {
-    var JsonParseHybrid = hybridify(JSON.parse)
-    var hybrid = JsonParseHybrid('{"foo":"bar"}')
+    var jsonParseHybrid = hybridify(JSON.parse)
+    var hybrid = jsonParseHybrid('{"foo":"bar"}')
 
     test.equal(isHybrid(hybrid), true)
     done()
   })
   test('should hybrid promise have .hybridify method', function (done) {
-    var JsonParseHybrid = hybridify(JSON.parse)
-    var promise = JsonParseHybrid('{"foo":"bar"}')
+    var jsonParseHybrid = hybridify(JSON.parse)
+    var promise = jsonParseHybrid('{"foo":"bar"}')
 
     test.equal(typeof promise.hybridify, 'function')
     done()
@@ -84,12 +85,12 @@ test('hybridify:', function () {
       test.equal(res[0][0], '<')
       cnt++
     })
-    .then(function (res) {
-      test.equal(cnt, 1)
-      test.equal(res.length, 2)
-      test.equal(res[0][0], '<')
-      done()
-    })
+      .then(function (res) {
+        test.equal(cnt, 1)
+        test.equal(res.length, 2)
+        test.equal(res[0][0], '<')
+        done()
+      })
   })
   test('should be able to create own hybrids', function () {
     test('every hybrid have `.hybridify` method', function (done) {
@@ -118,11 +119,11 @@ test('hybridify:', function () {
     })
     test('with promise api - with .catch(err)', function (done) {
       hybridGot('https://gitfsdfsdfm')
-      .catch(function (err) {
-        test.ifError(!err)
-        test.ok(err.message)
-        done()
-      })
+        .catch(function (err) {
+          test.ifError(!err)
+          test.ok(err.message)
+          done()
+        })
     })
     test('with both callback and promise api', function (done) {
       var cnt = 0
@@ -131,11 +132,91 @@ test('hybridify:', function () {
         test.ifError(!err)
         cnt++
       })
-      .catch(function (err) {
-        test.ifError(!err)
+        .catch(function (err) {
+          test.ifError(!err)
+          test.equal(cnt, 1)
+          done()
+        })
+    })
+  })
+  test('should work with fs.readFileSync directly', function (done) {
+    var fn = hybridify(fs.readFileSync)
+    var cnt = 0
+
+    var promise = fn('package.json', function (err, res) {
+      test.ifError(err)
+      // test.ok(res.indexOf('"license": "MIT"') !== -1)
+      test.ok(res instanceof Buffer)
+      cnt++
+    })
+
+    promise
+      .then(function (res) {
+        // test.ok(res.indexOf('"license": "MIT"') !== -1)
+        test.ok(res instanceof Buffer)
         test.equal(cnt, 1)
         done()
       })
+      .catch(done)
+  })
+  test('should work with mzfs.readFile directly', function (done) {
+    var mzfs = require('mz/fs')
+    var fn = hybridify(mzfs.readFile)
+    var cnt = 0
+
+    var promise = fn('package.json', function (err, res) {
+      test.ifError(err)
+      // test.ok(res.indexOf('"license": "MIT"') !== -1)
+      test.ok(res instanceof Buffer)
+      cnt++
     })
+
+    promise
+      .then(function (res) {
+        // test.ok(res.indexOf('"license": "MIT"') !== -1)
+        test.ok(res instanceof Buffer)
+        test.equal(cnt, 1)
+        done()
+      })
+      .catch(done)
+  })
+  test('should work with mzfs.readFileSync directly', function (done) {
+    var mzfs = require('mz/fs')
+    var fn = hybridify(mzfs.readFileSync)
+    var cnt = 0
+
+    var promise = fn('package.json', function (err, res) {
+      test.ifError(err)
+      // test.ok(res.indexOf('"license": "MIT"') !== -1)
+      test.ok(res instanceof Buffer)
+      cnt++
+    })
+
+    promise
+      .then(function (res) {
+        // test.ok(res.indexOf('"license": "MIT"') !== -1)
+        test.ok(res instanceof Buffer)
+        test.equal(cnt, 1)
+        done()
+      })
+      .catch(done)
+  })
+  test('should work with JSON.parse directly', function (done) {
+    var fn = hybridify(JSON.parse)
+    var cnt = 0
+
+    var promise = fn('{"foo":"bar"}', function (err, res) {
+      test.ifError(err)
+      test.deepEqual(res, {foo: 'bar'})
+      cnt++
+    })
+
+    promise
+      .then(function (res) {
+        test.deepEqual(res, {foo: 'bar'})
+        test.equal(cnt, 1)
+        done()
+      })
+      .catch(done)
   })
 })
