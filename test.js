@@ -9,12 +9,15 @@
 
 'use strict'
 
-// var test = require('assertit')
-// var hybridify = require('./index')
+var fs = require('fs')
+var test = require('assertit')
+var hybridify = require('./index')
 
-// var fs = require('fs')
-// // hybridify.promise = 'foo'
-// var readFile = hybridify(fs.readFile)
-// // readFile.promise = 'bar'
-// var promise = readFile('package.json').then(JSON.parse)
-
+test('should works', function (done) {
+  var readFile = hybridify(fs.readFile)
+  var promise = readFile('package.json')
+  promise.then(JSON.parse).then(function (data) {
+    test.strictEqual(data.name, 'hybridify')
+    done()
+  }, done)
+})
