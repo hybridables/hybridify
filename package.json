@@ -1,9 +1,10 @@
 {
   "name": "hybridify",
   "version": "1.0.9",
-  "description": "description",
+  "description": "Hybridify. Hybrids. Create sync/async or generator to support both promise and callback style api. They are now hybrids - they are able to have own population of hybrids without including hybridify anymore.",
   "repository": "hybridables/hybridify",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
+  "precommit.silent": true,
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -11,42 +12,17 @@
   },
   "dependencies": {
     "handle-arguments": "^3.0.4",
-    "voa": "^0.1.1"
+    "letta": "^0.4.0",
+    "then-callback": "^1.0.2"
   },
   "devDependencies": {
     "assertit": "^0.1.0",
-    "got": "^3.2.0",
-    "is-hybrid": "^1.0.0",
-    "is-promise": "^2.0.0",
-    "mz": "^2.0.0"
+    "pre-commit": "*"
   },
+  "files": [
+    "index.js"
+  ],
   "keywords": [
-    "api",
-    "apis",
-    "aplus",
-    "async",
-    "async to hybrid",
-    "promise to hybrid",
-    "async to hybridify",
-    "build",
-    "building",
-    "callback",
-    "callback-and-promise",
-    "callbacks",
-    "control",
-    "control-flow",
-    "es6",
-    "flow",
-    "hybrid",
-    "hybrid-api",
-    "hybrid-apis",
-    "hybridify",
-    "hybridify-api",
-    "hybridify-apis",
-    "promise",
-    "promises",
-    "promises-api",
-    "promises-aplus",
-    "then"
+    "hybridify"
   ]
 }

@@ -1,34 +1,46 @@
 /*!
  * hybridify <https://github.com/hybridables/hybridify>
  *
- * Copyright (c) 2015 Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)
+ * Copyright (c) 2016 Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)
  * Released under the MIT license.
  */
 
 'use strict'
 
-var voa = require('voa')
+var letta = require('letta')
+var thenCallback = require('then-callback')
 var handleArguments = require('handle-arguments')
 
-module.exports = hybridify
-
-function hybridify (val) {
+/**
+ * > Hybridify sync, async or generator function.
+ *
+ * **Example**
+ *
+ * ```js
+ * const hybridify = require('hybridify')
+ * const fs = require('fs')
+ *
+ * // hybridify.promise = require('es6-promise')
+ * const readFile = hybridify(fs.readFile)
+ *
+ * // readFile.promise = require('es6-promise')
+ * readFile('./package.json', 'utf8')
+ *   .then(JSON.parse)
+ *   .then(console.log)
+ * ```
+ *
+ * @name   hybridify
+ * @param  {Function} `<fn>` function to hybridify, it can be sync/async/generator
+ * @param  {Function} `[Prome]` custom promise constructor
+ * @return {Function}
+ * @api public
+ */
+module.exports = function hybridify (fn, Prome) {
   var self = this
-
-  function hybridified () {
-    voa.promise = hybridify.promise || hybridified.promise
+  return function hybridified () {
+    letta.promise = Prome || hybridify.promise || hybridified.promise
     var argz = handleArguments(arguments)
-    var promise = voa.apply(self || this, [val].concat(argz.args))
-
-    if (argz.callback) {
-      promise = promise.then(function (res) {
-        argz.callback.apply(self || this, [null].concat(res))
-        return res
-      }.bind(this), argz.callback.bind(self || this))
-    }
-    promise.hybridify = hybridify
-    return promise
+    var promise = letta.apply(self || this, [fn].concat(argz.args))
+    return thenCallback(promise).then(argz.callback)
   }
-  hybridified.hybridify = hybridify
-  return hybridified
 }
