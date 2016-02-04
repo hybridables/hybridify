@@ -1,7 +1,7 @@
 {
   "name": "hybridify",
   "version": "1.0.9",
-  "description": "Hybridify. Hybrids. Create sync/async or generator to support both promise and callback style api. They are now hybrids - they are able to have own population of hybrids without including hybridify anymore.",
+  "description": "Hybridify. Hybrids. Create sync/async or generator to support both promise and callback style api in same time.",
   "repository": "hybridables/hybridify",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
   "precommit.silent": true,
@@ -23,6 +23,27 @@
     "index.js"
   ],
   "keywords": [
-    "hybridify"
+    "api",
+    "async",
+    "asynchronous",
+    "await",
+    "callback",
+    "callback-style",
+    "cb",
+    "control",
+    "controlflow",
+    "done",
+    "flow",
+    "generator",
+    "hybrid",
+    "hybridify",
+    "hybrids",
+    "next",
+    "promise",
+    "promise-api",
+    "style",
+    "support",
+    "sync",
+    "synchronous"
   ]
 }
