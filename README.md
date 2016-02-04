@@ -10,7 +10,7 @@ Hybrids are perfect for these times of transition from old school callback hell 
 
 If you have callback api, or even some synchronous libs, hybrids comes to the rescue - use hybridify and you here - in Promises Land, with centralized error handling and no breaking changes.  
 
-You can use hybridify when you considered to derecate the callback api and want to support then for next few versions. And all that, without breaking changes - users of your library or project will be able to decide what to use - promises or good old callbacks.
+You can use hybridify when you considered to deprecate the callback api and want to support then for next few versions. And all that, without breaking changes - users of your library or project will be able to decide what to use - promises or good old callbacks.
 
 
 ## Install
