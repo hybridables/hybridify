@@ -1,7 +1,7 @@
 {
   "name": "hybridify",
   "version": "1.0.9",
-  "description": "Hybridify. Hybrids. Create sync/async or generator to support both promise and callback style api in same time.",
+  "description": "Hybridify. Hybrids. Create sync, async or generator function to support both promise and callback-style APIs in same time. Using the power of [letta][] and [relike][].",
   "repository": "hybridables/hybridify",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
   "precommit.silent": true,
@@ -11,39 +11,31 @@
     "test": "standard && node test.js"
   },
   "dependencies": {
-    "handle-arguments": "^3.0.4",
-    "letta": "^0.4.0",
-    "then-callback": "^1.0.2"
+    "mukla": "^0.4.1"
   },
   "devDependencies": {
-    "assertit": "^0.1.0",
+    "mukla": "^0.4.1",
     "pre-commit": "*"
   },
   "files": [
     "index.js"
   ],
   "keywords": [
-    "api",
-    "async",
-    "asynchronous",
-    "await",
-    "callback",
-    "callback-style",
-    "cb",
-    "control",
-    "controlflow",
-    "done",
-    "flow",
-    "generator",
-    "hybrid",
-    "hybridify",
-    "hybrids",
-    "next",
-    "promise",
-    "promise-api",
-    "style",
-    "support",
-    "sync",
-    "synchronous"
-  ]
+    "hybridify"
+  ],
+  "verb": {
+    "run": true,
+    "toc": false,
+    "layout": "empty",
+    "tasks": [
+      "readme"
+    ],
+    "lint": {
+      "reflinks": true
+    },
+    "reflinks": [
+      "letta",
+      "relike"
+    ]
+  }
 }
