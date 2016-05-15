@@ -14,7 +14,7 @@ var hybridify = module.exports = function hybridify (fn) {
 
   var names = utils.commonCallbackNames
   var argz = utils.handle(arguments, [null].concat(names))
-  var promise = utils.letta.apply(this, arguments)
+  var promise = utils.letta.apply(this, argz.args)
   var resolved = utils.then(promise).then(argz.callback)
 
   return utils.normalizePromise(resolved, promise)
