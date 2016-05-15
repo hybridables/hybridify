@@ -16,6 +16,84 @@ npm i hybridify --save
 const hybridify = require('hybridify')
 ```
 
+### [hybridify](index.js#L41)
+> Make sync, async and generator `fn` to support promise and callback-style APIs in same time.
+
+**Params**
+
+* `<fn>` **{Function}**: Some sync, async or generator function.    
+* `[...args]` **{Mixed}**: Any number of any type of arguments, they are passed to `fn`.    
+* `returns` **{Promise}**: Always Promise, always native Promise if supported on environment.  
+
+**Example**
+
+```js
+const fs = require('fs')
+const hybridify = require('hybridify')
+
+const promise = hybridify(fs.readFile, 'package.json', (err, buf) => {
+  if (err) console.error('callback err:', err)
+  console.log('callback res:', buf) // => '<Buffer 7b 0a 20 ...>'
+})
+
+promise.then(buf => {
+  console.log('promise res:', buf) // => '<Buffer 7b 0a 20 ...>'
+}, err => {
+  console.error('promise err:', err.stack)
+})
+```
+
+### [.hybridify](index.js#L84)
+> Wrapper function for `hybridify()`, but acts like `.promisify` thingy. Accepts `fn` function and returns a function, which when is called returns a Promise, but also can accept and calls final callback if given.
+
+**Params**
+
+* `<fn>` **{Function}**: Some sync, async or generator function.    
+* `[Promize]` **{Function}**: Promise constructor to be used on environment where no support for native.    
+* `returns` **{Function}**: Hybridified function, which always return a Promise.  
+
+**Example**
+
+```js
+const fs = require('fs')
+const hybridify = require('hybridify')
+const readdir = hybridify.hybridify(fs.readdir)
+
+const promise = readdir('./', (err, files) => {
+  if (err) console.error('callback err:', err)
+  console.log('callback res:', files) // => array with directory files
+})
+
+promise.then(files => {
+  console.log('promise res:', files) // => array of files
+}, err => {
+  console.error('promise err:', err.stack)
+})
+```
+
+### [.promisify](index.js#L122)
+> Alias for [letta][]'s `.promisify` method. Almost the same as the `.hybridify` method, but can't accept callback. When returned function is called only returns a promise, not calls the final callback.
+
+**Params**
+
+* `<fn>` **{Function}**: Some sync, async or generator function.    
+* `[Promize]` **{Function}**: Promise constructor to be used on environment where no support for native.    
+* `returns` **{Function}**: Promisified function, which always return a Promise.  
+
+**Example**
+
+```js
+const fs = require('fs')
+const hybridify = require('hybridify')
+const statPromised = hybridify.promisify(fs.statSync)
+
+statPromised('./index.js').then(stats => {
+  console.log(stats.mode) // => mode of file
+}, err => {
+  console.error(err.stack)
+})
+```
+
 ## Contributing
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/hybridables/hybridify/issues/new).  
 But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) guidelines.
