@@ -4,6 +4,8 @@
 
 [![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url] [![travis build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![dependency status][david-img]][david-url]
 
+You might also be interested in [letta][], [relike][], [relike-all][].
+
 ## Wait, what?
 Hybrids?! Yea, hybrids are just promises on steroids. The philosophy of hybrids are some edge use cases like when you want to use both promise-style api and callback-style api in same time.
 
@@ -18,9 +20,7 @@ You can use hybridify when you considered to deprecate the callback api and want
 
 - "promisify" synchronous and asynchronous functions
 - no breaking changes between switching APIs - from callbacks to promises
-- lower lever than "promisify" - giving function to 1st argument, the next arguments are passed to it
 - thin wrapper around [relike][] to add support for both promise and callback-style API
-- never crash, absolutely silent
 - only using [bluebird][], if not other Promise constructor provided through `.Promise` property
 - [bluebird][] or the custom constructor is used only on enviroments that don't have support for native Promise
 - works on any nodejs version - from `v0.10.x` to latest `v6+` [Node.js](https://nodejs.org)
@@ -188,6 +188,16 @@ console.log(promise.Promise) // => The `when` promise constructor, on old enviro
 console.log(promise.___customPromise) // => `true` on old environments
 ```
 
+## Related
+* [callback2stream](https://www.npmjs.com/package/callback2stream): Transform sync, async or generator function to Stream. Correctly handle errors. [homepage](https://github.com/hybridables/callback2stream)
+* [letta](https://www.npmjs.com/package/letta): Promisify sync, async or generator function, using [relike][]. Kind of promisify, but… [more](https://www.npmjs.com/package/letta) | [homepage](https://github.com/hybridables/letta)
+* [limon](https://www.npmjs.com/package/limon): The pluggable JavaScript lexer. Limon = Lemon. | [homepage](https://github.com/limonjs/limon)
+* [promise2stream](https://www.npmjs.com/package/promise2stream): Transform ES2015 Promise to Stream - specifically, Transform Stream using… [more](https://www.npmjs.com/package/promise2stream) | [homepage](https://github.com/hybridables/promise2stream)
+* [relike](https://www.npmjs.com/package/relike): Simple promisify async or sync function with sane defaults. Lower level than… [more](https://www.npmjs.com/package/relike) | [homepage](https://github.com/hybridables/relike)
+* [relike-all](https://www.npmjs.com/package/relike-all): Promisify all function in an object, using [relike][]. | [homepage](https://github.com/hybridables/relike-all)
+* [relike-value](https://www.npmjs.com/package/relike-value): Create promise from sync, async, string, number, array and so on. Handle… [more](https://www.npmjs.com/package/relike-value) | [homepage](https://github.com/hybridables/relike-value)
+* [value2stream](https://www.npmjs.com/package/value2stream): Transform any value to stream. Create a stream from any value -… [more](https://www.npmjs.com/package/value2stream) | [homepage](https://github.com/hybridables/value2stream)
+
 ## Contributing
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/hybridables/hybridify/issues/new).  
 But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) guidelines.
@@ -199,6 +209,8 @@ But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 [bluebird]: https://github.com/petkaantonov/bluebird
 [letta]: https://github.com/hybridables/letta
 [relike]: https://github.com/hybridables/relike
+[relike-all]: https://github.com/hybridables/relike-all
+[through2]: https://github.com/rvagg/through2
 
 [npmjs-url]: https://www.npmjs.com/package/hybridify
 [npmjs-img]: https://img.shields.io/npm/v/hybridify.svg?label=hybridify

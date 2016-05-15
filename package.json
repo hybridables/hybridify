@@ -30,22 +30,58 @@
     "utils.js"
   ],
   "keywords": [
-    "hybridify"
+    "all",
+    "api",
+    "args",
+    "async",
+    "asynchronous",
+    "callback",
+    "callback-style",
+    "cb",
+    "common",
+    "func",
+    "function",
+    "hybrid",
+    "hybridify",
+    "hybrids",
+    "letta",
+    "new",
+    "old",
+    "promise",
+    "promisify",
+    "relike",
+    "style",
+    "sync",
+    "synchronous"
   ],
   "verb": {
+    "reflinks": [
+      "bluebird",
+      "letta",
+      "relike",
+      "relike-all",
+      "through2"
+    ],
     "run": true,
     "toc": false,
     "layout": "empty",
-    "tasks": [
-      "readme"
-    ],
     "lint": {
       "reflinks": true
     },
-    "reflinks": [
-      "letta",
-      "relike",
-      "bluebird"
-    ]
+    "tasks": [
+      "readme"
+    ],
+    "related": {
+      "list": [
+        "callback2stream",
+        "letta",
+        "limon",
+        "promise2stream",
+        "relike",
+        "relike-all",
+        "relike-value",
+        "value2stream"
+      ]
+    }
   }
 }
