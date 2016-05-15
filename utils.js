@@ -26,9 +26,9 @@ require = utils // eslint-disable-line no-undef, no-native-reassign
 
 require('common-callback-names')
 require('handle-arguments', 'handle')
-require('letta')
-require('then-callback', 'then')
+require('relike')
 require('sliced')
+require('then-callback', 'then')
 
 /**
  * Restore `require`

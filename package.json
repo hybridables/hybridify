@@ -1,7 +1,7 @@
 {
   "name": "hybridify",
   "version": "1.0.9",
-  "description": "Hybridify. Hybrids. Create sync, async or generator function to support both promise and callback-style APIs in same time. Using the power of [letta][] and [relike][].",
+  "description": "Hybridify. Hybrids. Create sync or async function to support both promise and callback-style APIs in same time. Using the power of [relike][].",
   "repository": "hybridables/hybridify",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
   "precommit.silent": true,
@@ -14,7 +14,7 @@
     "common-callback-names": "^1.0.2",
     "handle-arguments": "^3.1.0",
     "lazy-cache": "^2.0.1",
-    "letta": "^0.5.0",
+    "relike": "^1.1.4",
     "sliced": "^1.0.1",
     "then-callback": "^1.0.3"
   },

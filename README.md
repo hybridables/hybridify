@@ -1,6 +1,6 @@
 # [hybridify][author-www-url] [![npmjs.com][npmjs-img]][npmjs-url] [![The MIT License][license-img]][license-url] [![npm downloads][downloads-img]][downloads-url] 
 
-> Hybridify. Hybrids. Create sync, async or generator function to support both promise and callback-style APIs in same time. Using the power of [letta][] and [relike][].
+> Hybridify. Hybrids. Create sync or async function to support both promise and callback-style APIs in same time. Using the power of [relike][].
 
 [![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url] [![travis build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![dependency status][david-img]][david-url]
 
@@ -16,63 +16,15 @@ You can use hybridify when you considered to deprecate the callback api and want
 ## Highlights
 > A few features and main points.
 
-- "promisify" sync, async and generator functions
+- "promisify" synchronous and asynchronous functions
 - no breaking changes between switching APIs - from callbacks to promises
 - lower lever than "promisify" - giving function to 1st argument, the next arguments are passed to it
-- thin wrapper around [letta][] to add support for both promise and callback-style API
-- full compatibility with `co@4` and passing 100% of its tests
+- thin wrapper around [relike][] to add support for both promise and callback-style API
 - never crash, absolutely silent
 - only using [bluebird][], if not other Promise constructor provided through `.Promise` property
 - [bluebird][] or the custom constructor is used only on enviroments that don't have support for native Promise
 - works on any nodejs version - from `v0.10.x` to latest `v6+` [Node.js](https://nodejs.org)
 - accept and works with javascript internal functions like `JSON.stringify` and `JSON.parse`
-
-## Note
-
-### Absolutely silent - never crash
-Using `hybridify` you should be absolutely careful. Because it makes your application absolutely silent. Which means
-if you have some `ReferenceError` or something like it, after the execution of `hybridify` it will be muted. And the
-only way to handle it is through `.catch` from the returned promise.
-
-Let's visualise it. In the following examples we'll use [relike][] first and then `hybridify`, and you can see the differences.
-
-```js
-var relike = require('relike')
-var promise = relike(function () {
-  return 123
-})
-
-promise.then(console.log, err => {
-  console.error(err.stack)
-  // => errors only happened in function wrapped by relike
-})
-
-foo
-// => throws ReferenceError directly, immediately
-// and your application will crash
-```
-
-But the things, using `hybridify` are little bit different, because we have listeners on `unhandledRejection` and
-on `uncaughtException` events. The same example from above, using `hybridify`
-
-```js
-var hybridify = require('hybridify')
-var promise = hybridify(function () {
-  return 123
-})
-
-promise.then(console.log, err => {
-  console.error(err.stack)
-  // => ReferenceError: foo is not defined
-})
-
-foo
-// => never throws directly, never crash
-// this error should be handled from the promise
-```
-
-So, if you don't want this behavior, you should use [relike][]. But if you want generators support, you should
-do some little wrapper for [relike][].
 
 ## Install
 ```
@@ -142,7 +94,7 @@ promise.then(files => {
 ```
 
 ### [.promisify](index.js#L122)
-> Alias for [letta][]'s `.promisify` method. Almost the same as the `.hybridify` method, but can't accept callback. When returned function is called only returns a promise, not calls the final callback.
+> Alias for [relike][]'s `.promisify` method. Almost the same as the `.hybridify` method, but can't accept callback. When returned function is called only returns a promise, not calls the final callback.
 
 **Params**
 

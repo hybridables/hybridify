@@ -39,11 +39,11 @@ var utils = require('./utils')
  */
 
 var hybridify = module.exports = function hybridify (fn) {
-  utils.letta.Promise = hybridify.Promise
+  utils.relike.Promise = hybridify.Promise
 
   var names = utils.commonCallbackNames
   var argz = utils.handle(arguments, [null].concat(names))
-  var promise = utils.letta.apply(this, argz.args)
+  var promise = utils.relike.apply(this, argz.args)
   var resolved = utils.then(promise).then(argz.callback)
 
   return utils.normalizePromise(resolved, promise)
@@ -94,7 +94,7 @@ hybridify.hybridify = function hybridifyHybridify (fn, Promize) {
 }
 
 /**
- * > Alias for [letta][]'s `.promisify` method. Almost the same as
+ * > Alias for [relike][]'s `.promisify` method. Almost the same as
  * the `.hybridify` method, but can't accept callback. When returned
  * function is called only returns a promise, not calls the final callback.
  *
@@ -120,6 +120,6 @@ hybridify.hybridify = function hybridifyHybridify (fn, Promize) {
  */
 
 hybridify.promisify = function hybridifyPromisify (fn, Promize) {
-  utils.letta.promisify.Promise = Promize || hybridifyPromisify.Promise
-  return utils.letta.promisify.apply(this, arguments)
+  utils.relike.promisify.Promise = Promize || hybridifyPromisify.Promise
+  return utils.relike.promisify.apply(this, arguments)
 }
