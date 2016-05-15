@@ -1,6 +1,6 @@
 {
   "name": "hybridify",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "description": "Hybridify. Hybrids. Create sync or async function to support both promise and callback-style APIs in same time. Using the power of [relike][].",
   "repository": "hybridables/hybridify",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
@@ -60,8 +60,7 @@
       "letta",
       "relike",
       "relike-all",
-      "through2",
-      "hybridify-all"
+      "through2"
     ],
     "run": true,
     "toc": false,

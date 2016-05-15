@@ -1,5 +1,13 @@
 
 
+## 2.0.0 - 2016-05-16
+- Release v2.0.0 / npm@v2.0.0
+- refactor to use `relike` - hybridify/promisify sync and async functions
+- expose `.Promise` to allow custom Promise constructor for environments where no support for native.
+- expose `.promisify` and `.hybridify` method
+- childs and the promise no more have `.hybridify` method
+- update docs, use verb, code comments etc stuff
+
 ## 1.0.9 - 2015-05-17
 - Release v1.0.9 / npm@v1.0.9
 - fix contributing section typo
