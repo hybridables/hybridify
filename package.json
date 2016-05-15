@@ -11,14 +11,19 @@
     "test": "standard && node test.js"
   },
   "dependencies": {
-    "mukla": "^0.4.1"
+    "handle-arguments": "^3.1.0",
+    "lazy-cache": "^2.0.1",
+    "letta": "^0.5.0",
+    "sliced": "^1.0.1",
+    "then-callback": "^1.0.3"
   },
   "devDependencies": {
     "mukla": "^0.4.1",
     "pre-commit": "*"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "utils.js"
   ],
   "keywords": [
     "hybridify"
