@@ -10,7 +10,7 @@
 var utils = require('./utils')
 
 /**
- * > Make sync, async and generator `fn` to support
+ * > Make sync or async `fn` to support
  * promise and callback-style APIs in same time.
  *
  * **Example**
@@ -32,7 +32,7 @@ var utils = require('./utils')
  * ```
  *
  * @name   hybridify
- * @param  {Function} `<fn>` Some sync, async or generator function.
+ * @param  {Function} `<fn>` Some sync or asynchronous function.
  * @param  {Mixed} `[...args]` Any number of any type of arguments, they are passed to `fn`.
  * @return {Promise} Always Promise, always native Promise if supported on environment.
  * @api public
@@ -75,7 +75,7 @@ var hybridify = module.exports = function hybridify (fn) {
  * ```
  *
  * @name   .hybridify
- * @param  {Function} `<fn>` Some sync, async or generator function.
+ * @param  {Function} `<fn>` Some sync or asynchronous function.
  * @param  {Function} `[Promize]` Promise constructor to be used on environment where no support for native.
  * @return {Function} Hybridified function, which always return a Promise.
  * @api public
@@ -113,7 +113,7 @@ hybridify.hybridify = function hybridifyHybridify (fn, Promize) {
  * ```
  *
  * @name   .promisify
- * @param  {Function} `<fn>` Some sync, async or generator function.
+ * @param  {Function} `<fn>` Some sync or asynchronous function.
  * @param  {Function} `[Promize]` Promise constructor to be used on environment where no support for native.
  * @return {Function} Promisified function, which always return a Promise.
  * @api public

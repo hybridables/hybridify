@@ -39,11 +39,11 @@ const hybridify = require('hybridify')
 ```
 
 ### [hybridify](index.js#L41)
-> Make sync, async and generator `fn` to support promise and callback-style APIs in same time.
+> Make sync or async `fn` to support promise and callback-style APIs in same time.
 
 **Params**
 
-* `<fn>` **{Function}**: Some sync, async or generator function.    
+* `<fn>` **{Function}**: Some sync or asynchronous function.    
 * `[...args]` **{Mixed}**: Any number of any type of arguments, they are passed to `fn`.    
 * `returns` **{Promise}**: Always Promise, always native Promise if supported on environment.  
 
@@ -70,7 +70,7 @@ promise.then(buf => {
 
 **Params**
 
-* `<fn>` **{Function}**: Some sync, async or generator function.    
+* `<fn>` **{Function}**: Some sync or asynchronous function.    
 * `[Promize]` **{Function}**: Promise constructor to be used on environment where no support for native.    
 * `returns` **{Function}**: Hybridified function, which always return a Promise.  
 
@@ -98,7 +98,7 @@ promise.then(files => {
 
 **Params**
 
-* `<fn>` **{Function}**: Some sync, async or generator function.    
+* `<fn>` **{Function}**: Some sync or asynchronous function.    
 * `[Promize]` **{Function}**: Promise constructor to be used on environment where no support for native.    
 * `returns` **{Function}**: Promisified function, which always return a Promise.  
 
@@ -193,9 +193,9 @@ console.log(promise.___customPromise) // => `true` on old environments
 * [letta](https://www.npmjs.com/package/letta): Promisify sync, async or generator function, using [relike][]. Kind of promisify, but… [more](https://www.npmjs.com/package/letta) | [homepage](https://github.com/hybridables/letta)
 * [limon](https://www.npmjs.com/package/limon): The pluggable JavaScript lexer. Limon = Lemon. | [homepage](https://github.com/limonjs/limon)
 * [promise2stream](https://www.npmjs.com/package/promise2stream): Transform ES2015 Promise to Stream - specifically, Transform Stream using… [more](https://www.npmjs.com/package/promise2stream) | [homepage](https://github.com/hybridables/promise2stream)
-* [relike](https://www.npmjs.com/package/relike): Simple promisify async or sync function with sane defaults. Lower level than… [more](https://www.npmjs.com/package/relike) | [homepage](https://github.com/hybridables/relike)
 * [relike-all](https://www.npmjs.com/package/relike-all): Promisify all function in an object, using [relike][]. | [homepage](https://github.com/hybridables/relike-all)
 * [relike-value](https://www.npmjs.com/package/relike-value): Create promise from sync, async, string, number, array and so on. Handle… [more](https://www.npmjs.com/package/relike-value) | [homepage](https://github.com/hybridables/relike-value)
+* [relike](https://www.npmjs.com/package/relike): Simple promisify async or sync function with sane defaults. Lower level than… [more](https://www.npmjs.com/package/relike) | [homepage](https://github.com/hybridables/relike)
 * [value2stream](https://www.npmjs.com/package/value2stream): Transform any value to stream. Create a stream from any value -… [more](https://www.npmjs.com/package/value2stream) | [homepage](https://github.com/hybridables/value2stream)
 
 ## Contributing
