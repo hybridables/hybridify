@@ -4,7 +4,7 @@
 
 [![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url] [![travis build status][travis-img]][travis-url] [![coverage status][coveralls-img]][coveralls-url] [![dependency status][david-img]][david-url]
 
-You might also be interested in [letta][], [relike][], [relike-all][].
+You might also be interested in [letta][], [relike][], [relike-all][], [hybridify-all][].
 
 ## Wait, what?
 Hybrids?! Yea, hybrids are just promises on steroids. The philosophy of hybrids are some edge use cases like when you want to use both promise-style api and callback-style api in same time.
@@ -22,7 +22,7 @@ You can use hybridify when you considered to deprecate the callback api and want
 - no breaking changes between switching APIs - from callbacks to promises
 - thin wrapper around [relike][] to add support for both promise and callback-style API
 - only using [bluebird][], if not other Promise constructor provided through `.Promise` property
-- [bluebird][] or the custom constructor is used only on enviroments that don't have support for native Promise
+- [bluebird][] or the custom constructor is used only on environments that don't have support for native Promise
 - works on any nodejs version - from `v0.10.x` to latest `v6+` [Node.js](https://nodejs.org)
 - accept and works with javascript internal functions like `JSON.stringify` and `JSON.parse`
 
@@ -118,21 +118,21 @@ statPromised('./index.js').then(stats => {
 
 ### .Promise
 
-While `hybridify` always trying to use native Promise if available in the enviroment, you can
-give a Promise constructor to be used on enviroment where there's no support - for example, old
-broswers or node's 0.10 version. By default, `hybridify` will use and include [bluebird][] on old enviroments,
+While `hybridify` always trying to use native Promise if available in the environment, you can
+give a Promise constructor to be used on environment where there's no support - for example, old
+broswers or node's 0.10 version. By default, `hybridify` will use and include [bluebird][] on old environments,
 as it is the fastest implementation of Promises. So, you are able to give Promise constructor, but
-it won't be used in modern enviroments - it always will use native Promise, you can't trick that. You
-can't give custom promise implementation to be used in any enviroment.
+it won't be used in modern environments - it always will use native Promise, you can't trick that. You
+can't give custom promise implementation to be used in any environment.
 
 **Example**
 
 ```js
-var fs = require('fs')
-var hybridify = require('hybridify')
+const fs = require('fs')
+const hybridify = require('hybridify')
 
 hybridify.hybridify.Promise = require('q') // using `Q` promise on node 0.10
-var readFile = hybridify.hybridify(fs.readFile)
+const readFile = hybridify.hybridify(fs.readFile)
 
 readFile('package.json', 'utf8', (err, val) => {
   if (err) console.error(err)
@@ -146,23 +146,23 @@ readFile('package.json', 'utf8', (err, val) => {
 One way to pass a custom Promise constructor is as shown above. But the other way is passing it to `.Promise` of the hybridified function, like that
 
 ```js
-var fs = require('fs')
-var hybridify = require('hybridify')
-var statFile = hybridify.hybridify(fs.stat)
+const fs = require('fs')
+const hybridify = require('hybridify')
+const statFile = hybridify.hybridify(fs.stat)
 
 statFile.Promise = require('when') // using `when` promise on node 0.10
 statFile('package.json').then(console.log, console.error)
 ```
 
 One more thing, is that you can access the used Promise and can detect what promise is used. It is easy, just as `promise.Promise` and you'll get it.
-Or look for `promise.___bluebirdPromise` and `promise.___customPromise` properties. `.___bluebirdPromise` (yea, with three underscores in front) will be true if enviroment is old and you didn't provide promise constructor to `.Promise`.  
+Or look for `promise.___bluebirdPromise` and `promise.___customPromise` properties. `.___bluebirdPromise` (yea, with three underscores in front) will be true if environment is old and you didn't provide promise constructor to `.Promise`.  
 So, when you give constructor `.__customPromise` will be true and `.___bluebirdPromise` will be false.
 
 ```js
-var fs = require('fs')
-var hybridify = require('hybridify')
+const fs = require('fs')
+const hybridify = require('hybridify')
 
-var promise = hybridify(fs.readFile, 'package.json', 'utf8', (err, val) => {
+const promise = hybridify(fs.readFile, 'package.json', 'utf8', (err, val) => {
   if (err) console.error(err)
   console.log(JSON.parse(val).name) // => 'hybridify'
 })
@@ -184,7 +184,7 @@ const readFile = hybridify.hybridify(fs.readFile, require('when'))
 
 const promise = readFile('index.js')
 
-console.log(promise.Promise) // => The `when` promise constructor, on old enviroments
+console.log(promise.Promise) // => The `when` promise constructor, on old environments
 console.log(promise.___customPromise) // => `true` on old environments
 ```
 
@@ -207,6 +207,7 @@ But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 [![tunnckoCore.tk][author-www-img]][author-www-url] [![keybase tunnckoCore][keybase-img]][keybase-url] [![tunnckoCore npm][author-npm-img]][author-npm-url] [![tunnckoCore twitter][author-twitter-img]][author-twitter-url] [![tunnckoCore github][author-github-img]][author-github-url]
 
 [bluebird]: https://github.com/petkaantonov/bluebird
+[hybridify-all]: https://github.com/hybridables/hybridify-all
 [letta]: https://github.com/hybridables/letta
 [relike]: https://github.com/hybridables/relike
 [relike-all]: https://github.com/hybridables/relike-all

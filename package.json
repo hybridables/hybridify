@@ -60,7 +60,8 @@
       "letta",
       "relike",
       "relike-all",
-      "through2"
+      "through2",
+      "hybridify-all"
     ],
     "run": true,
     "toc": false,
