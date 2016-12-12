@@ -23,7 +23,7 @@
     "is-promise": "^2.1.0",
     "isarray": "^2.0.1",
     "mukla": "^0.4.1",
-    "pre-commit": "*"
+    "pre-commit": ">=1.2.1"
   },
   "files": [
     "index.js",
